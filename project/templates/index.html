@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<h2>Your Portfolio</h2>
+   <table class="center">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Number of Shares</th>
+                <th>Current Price</th>
+                <th>Total Value</th>
+            </tr>
+        </thead>
+        <body>
+            {% for stock in display_stocks %}
+            <tr>
+                <td>{{ stock['symbol'] }}</td>
+                <td>{{ stock['name'] }}</td>
+                <td>{{ stock["shares"] }}</td>
+                <td>{{ stock["price"] }}</td>
+                <td>{{ stock["total_value"] }}</td>
+            </tr>
+            {% endfor %}
+        </body>
+        <tfoot>
+            <tr colspan="4">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="bold">CASH</td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr colspan="4">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="bold">TOTAL</td>
+                <td>{{ grand_total }}</td>
+            </tr>
+        </tfoot>
+   </table>
+
+
+   <form action="/optimise">
+    <button class="btn btn-primary" type="submit">Optimise Portfolio</button>
+</form>
+
+{% endblock %}
